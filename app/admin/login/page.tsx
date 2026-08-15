@@ -1,28 +1,5 @@
 "use client";
 
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
-
-export default function AdminPage() {
-  const router = useRouter();
-
-  useEffect(() => {
-    const auth = localStorage.getItem("admin-auth");
-
-    if (auth !== "true") {
-      router.replace("/admin/login");
-    }
-  }, [router]);
-
-  return (
-    <main className="p-8">
-      {/* Your existing admin dashboard goes here */}
-    </main>
-  );
-}
-
-"use client";
-
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 

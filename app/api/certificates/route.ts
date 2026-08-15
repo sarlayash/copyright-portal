@@ -13,6 +13,7 @@ export async function GET() {
     return NextResponse.json(certificates);
   } catch (error) {
     console.error(error);
+
     return NextResponse.json(
       { error: "Failed to fetch certificates" },
       { status: 500 }
@@ -26,7 +27,11 @@ export async function POST(request: Request) {
 
     const certificateId = `DTP-${Date.now()}`;
 
-    const verifyUrl = `http://localhost:3000/verify/${certificateId}`;
+    const baseUrl =
+      process.env.NEXT_PUBLIC_BASE_URL ||
+      "https://digitaltrustplatform.vercel.app";
+
+    const verifyUrl = `${baseUrl}/verify/${certificateId}`;
 
     const qrCode = await QRCode.toDataURL(verifyUrl);
 

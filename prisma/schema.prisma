@@ -7,13 +7,43 @@ datasource db {
   provider = "postgresql"
 }
 
+enum Role {
+  SUPER_ADMIN
+  ADMIN
+}
+
 model Certificate {
-  id            String   @id @default(cuid())
-  certificateId String   @unique
-  recipient     String
-  title         String
-  issuer        String
-  issuedAt      DateTime @default(now())
-  qrCode        String?
-  status        String   @default("VERIFIED")
+  id              String        @id @default(cuid())
+  certificateId   String        @unique
+  recipient        String
+  title            String
+  issuer           String
+  issuedAt         DateTime      @default(now())
+  qrCode           String?
+  status           String        @default("VERIFIED")
+
+  organizationId   String?
+  organization     Organization? @relation(fields: [organizationId], references: [id])
+}
+
+model Admin {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String
+  role      Role     @default(ADMIN)
+  createdAt DateTime @default(now())
+}
+
+model Organization {
+  id            String        @id @default(cuid())
+  name          String        @unique
+  website       String?
+  logo          String?
+  signature     String?
+  seal          String?
+  isActive      Boolean       @default(true)
+  createdAt     DateTime      @default(now())
+
+  certificates  Certificate[]
 }

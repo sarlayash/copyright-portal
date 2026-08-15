@@ -1,48 +1,48 @@
 import {
-  BadgeCheck,
   QrCode,
-  FileSpreadsheet,
-  Shield,
-  Palette,
-  BarChart3,
+  Building2,
+ FileSpreadsheet,
+  FileCheck2,
+  Download,
+  ShieldCheck,
 } from "lucide-react";
 
 const features = [
   {
-    icon: BadgeCheck,
-    title: "Professional Certificates",
+    icon: QrCode,
+    title: "QR Code Verification",
     description:
-      "Generate elegant, enterprise-grade certificates for training, internships, workshops and awards.",
+      "Every certificate includes a unique QR code that instantly verifies authenticity through the public verification portal.",
   },
   {
-    icon: QrCode,
-    title: "QR Verification",
+    icon: Building2,
+    title: "Multi-Organization Support",
     description:
-      "Every certificate includes a secure QR code for instant online verification.",
+      "Manage multiple organizations from a single dashboard with dedicated logos, signatures and official seals.",
+  },
+  {
+    icon: FileCheck2,
+    title: "Professional Certificates",
+    description:
+      "Generate beautifully branded digital certificates with organization identity, issue details and secure verification.",
   },
   {
     icon: FileSpreadsheet,
-    title: "Bulk Upload",
+    title: "Bulk Certificate Issuance",
     description:
-      "Issue hundreds of certificates at once using CSV or Excel uploads.",
+      "Upload Excel or CSV files to issue hundreds of certificates quickly with automatic processing and QR generation.",
   },
   {
-    icon: Shield,
-    title: "Revocation Support",
+    icon: Download,
+    title: "PDF Downloads",
     description:
-      "Instantly revoke certificates while preserving a complete audit trail.",
+      "Recipients can download professionally formatted PDF certificates and verification documents at any time.",
   },
   {
-    icon: Palette,
-    title: "Custom Branding",
+    icon: ShieldCheck,
+    title: "Secure Administration",
     description:
-      "Upload logos, signatures and templates for every organization.",
-  },
-  {
-    icon: BarChart3,
-    title: "Analytics",
-    description:
-      "Track issued, verified and revoked certificates with a modern dashboard.",
+      "Role-based administration, centralized certificate management and secure verification help maintain digital trust.",
   },
 ];
 
@@ -50,48 +50,53 @@ export default function Features() {
   return (
     <section
       id="features"
-      className="bg-white py-24"
+      className="bg-white py-24 dark:bg-slate-950"
     >
       <div className="mx-auto max-w-7xl px-6">
 
-        <div className="mx-auto mb-14 max-w-2xl text-center">
-          <span className="rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-700">
-            Enterprise Features
+        <div className="mx-auto mb-16 max-w-3xl text-center">
+
+          <span className="rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-700 dark:bg-blue-900/30 dark:text-blue-300">
+            SarlaYash Digital Trust Platform
           </span>
 
-          <h2 className="mt-6 text-4xl font-bold text-slate-900">
-            Everything needed to issue trusted certificates
+          <h2 className="mt-6 text-4xl font-bold text-slate-900 dark:text-white">
+            Everything Needed for Trusted Digital Certification
           </h2>
 
-          <p className="mt-4 text-lg text-slate-600">
-            Built for companies, universities, NGOs and training
-            organizations that require secure digital certification.
+          <p className="mt-5 text-lg leading-8 text-slate-600 dark:text-slate-400">
+            Built for educational institutions, companies, NGOs,
+            training providers and organizations that require secure,
+            verifiable and professionally branded digital certificates.
           </p>
+
         </div>
 
         <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+
           {features.map((feature) => {
             const Icon = feature.icon;
 
             return (
               <div
                 key={feature.title}
-                className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
+                className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl dark:border-slate-800 dark:bg-slate-900"
               >
-                <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-blue-50">
-                  <Icon className="h-7 w-7 text-blue-600" />
+                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-blue-50 dark:bg-slate-800">
+                  <Icon className="h-7 w-7 text-blue-600 dark:text-blue-400" />
                 </div>
 
-                <h3 className="text-xl font-semibold text-slate-900">
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white">
                   {feature.title}
                 </h3>
 
-                <p className="mt-3 leading-7 text-slate-600">
+                <p className="mt-4 leading-7 text-slate-600 dark:text-slate-400">
                   {feature.description}
                 </p>
               </div>
             );
           })}
+
         </div>
 
       </div>

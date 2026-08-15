@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import ThemeProvider from "@/components/providers/ThemeProvider";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -13,19 +14,18 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Digital Trust Platform | Powered by Kapil",
+  title: "SarlaYash Digital Trust Platform",
   description:
-    "Enterprise-grade digital credential issuance, verification, and certificate management platform.",
-  applicationName: "Digital Trust Platform",
+    "Secure digital certificate issuance, QR verification and organization management platform by SarlaYash.",
+  applicationName: "SarlaYash Digital Trust Platform",
   keywords: [
+    "SarlaYash",
     "Digital Trust Platform",
     "Digital Certificates",
     "QR Verification",
-    "Credential Management",
     "Certificate Verification",
-    "Copyright Certificates",
-    "Digital Credentials",
-    "Powered by Kapil",
+    "Credential Management",
+    "Copyright Portal",
   ],
 };
 
@@ -37,10 +37,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-white text-slate-900">
-        {children}
+      <body className="min-h-full bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100">
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

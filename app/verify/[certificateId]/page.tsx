@@ -15,6 +15,9 @@ export default async function VerifyPage({ params }: Props) {
     where: {
       certificateId,
     },
+    include: {
+      organization: true,
+    },
   });
 
   if (!certificate) {
@@ -22,7 +25,7 @@ export default async function VerifyPage({ params }: Props) {
   }
 
   return (
-    <main className="min-h-screen bg-slate-100 flex items-center justify-center p-10">
+    <main className="min-h-screen bg-gradient-to-br from-gray-100 via-gray-200 to-gray-300 flex items-center justify-center p-10">
       <CertificateCard certificate={certificate} />
     </main>
   );

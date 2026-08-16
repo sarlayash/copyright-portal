@@ -1,48 +1,48 @@
 import {
+  BadgeCheck,
   QrCode,
-  Building2,
- FileSpreadsheet,
-  FileCheck2,
-  Download,
-  ShieldCheck,
+  FileSpreadsheet,
+  Shield,
+  Palette,
+  BarChart3,
 } from "lucide-react";
 
 const features = [
   {
-    icon: QrCode,
-    title: "QR Code Verification",
-    description:
-      "Every certificate includes a unique QR code that instantly verifies authenticity through the public verification portal.",
-  },
-  {
-    icon: Building2,
-    title: "Multi-Organization Support",
-    description:
-      "Manage multiple organizations from a single dashboard with dedicated logos, signatures and official seals.",
-  },
-  {
-    icon: FileCheck2,
+    icon: BadgeCheck,
     title: "Professional Certificates",
     description:
-      "Generate beautifully branded digital certificates with organization identity, issue details and secure verification.",
+      "Create polished digital certificates for training, internships, workshops, achievements and awards.",
+  },
+  {
+    icon: QrCode,
+    title: "QR Verification",
+    description:
+      "Every certificate can be verified through a dedicated QR-powered verification experience.",
   },
   {
     icon: FileSpreadsheet,
     title: "Bulk Certificate Issuance",
     description:
-      "Upload Excel or CSV files to issue hundreds of certificates quickly with automatic processing and QR generation.",
+      "Process large certificate batches through structured CSV or spreadsheet-based workflows.",
   },
   {
-    icon: Download,
-    title: "PDF Downloads",
+    icon: Shield,
+    title: "Certificate Management",
     description:
-      "Recipients can download professionally formatted PDF certificates and verification documents at any time.",
+      "Manage issued credentials and support certificate status and verification workflows.",
   },
   {
-    icon: ShieldCheck,
-    title: "Secure Administration",
+    icon: Palette,
+    title: "Organization Branding",
     description:
-      "Role-based administration, centralized certificate management and secure verification help maintain digital trust.",
+      "Support organization identity through logos, authorized signatures, seals and certificate presentation.",
+  },
+  {
+    icon: BarChart3,
+    title: "Administration",
+    description:
+      "Provide authorized staff with tools for certificate issuance, organizations and operational management.",
   },
 ];
 
@@ -50,29 +50,30 @@ export default function Features() {
   return (
     <section
       id="features"
-      className="bg-white py-24 dark:bg-slate-950"
+      className="bg-[#f7f4ec] py-20 dark:bg-[#050505]"
     >
       <div className="mx-auto max-w-7xl px-6">
 
-        <div className="mx-auto mb-16 max-w-3xl text-center">
+        {/* Heading */}
+        <div className="mx-auto mb-14 max-w-2xl text-center">
 
-          <span className="rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-700 dark:bg-blue-900/30 dark:text-blue-300">
-            SarlaYash Digital Trust Platform
+          <span className="inline-flex rounded-full border border-[#c9a227]/35 bg-[#c9a227]/5 px-4 py-2 text-[10px] font-semibold tracking-[0.18em] text-[#8a6d12] dark:text-[#d4af37]">
+            PLATFORM CAPABILITIES
           </span>
 
-          <h2 className="mt-6 text-4xl font-bold text-slate-900 dark:text-white">
-            Everything Needed for Trusted Digital Certification
+          <h2 className="mt-5 text-3xl font-semibold tracking-tight text-[#171717] dark:text-[#f7f4ec] md:text-4xl">
+            Digital credentials built around trust
           </h2>
 
-          <p className="mt-5 text-lg leading-8 text-slate-600 dark:text-slate-400">
-            Built for educational institutions, companies, NGOs,
-            training providers and organizations that require secure,
-            verifiable and professionally branded digital certificates.
+          <p className="mt-4 text-base leading-7 text-[#6b675d] dark:text-[#a8a294]">
+            A focused platform for organizations that need to issue,
+            manage and verify digital credentials with confidence.
           </p>
 
         </div>
 
-        <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+        {/* Feature Grid */}
+        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
 
           {features.map((feature) => {
             const Icon = feature.icon;
@@ -80,19 +81,26 @@ export default function Features() {
             return (
               <div
                 key={feature.title}
-                className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl dark:border-slate-800 dark:bg-slate-900"
+                className="group rounded-2xl border border-[#d8d1c0] bg-white p-7 transition duration-300 hover:-translate-y-1 hover:border-[#c9a227]/50 hover:shadow-[0_18px_50px_rgba(0,0,0,0.08)] dark:border-[#2a2a2a] dark:bg-[#0b0b0b] dark:hover:border-[#c9a227]/50 dark:hover:shadow-[0_20px_60px_rgba(0,0,0,0.35)]"
               >
-                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-blue-50 dark:bg-slate-800">
-                  <Icon className="h-7 w-7 text-blue-600 dark:text-blue-400" />
+
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-[#c9a227]/30 bg-[#c9a227]/5 text-[#b28d18] transition group-hover:border-[#d4af37] group-hover:text-[#d4af37] dark:text-[#d4af37]">
+                  <Icon
+                    size={22}
+                    strokeWidth={1.7}
+                  />
                 </div>
 
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white">
+                <h3 className="mt-6 text-lg font-semibold text-[#171717] dark:text-[#f7f4ec]">
                   {feature.title}
                 </h3>
 
-                <p className="mt-4 leading-7 text-slate-600 dark:text-slate-400">
+                <p className="mt-3 text-sm leading-6 text-[#6b675d] dark:text-[#a8a294]">
                   {feature.description}
                 </p>
+
+                <div className="mt-6 h-px w-10 bg-[#c9a227]/50 transition-all duration-300 group-hover:w-16 group-hover:bg-[#d4af37]" />
+
               </div>
             );
           })}

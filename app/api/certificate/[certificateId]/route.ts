@@ -11,20 +11,55 @@ export async function GET(
   request: Request,
   { params }: Props
 ) {
-  const { certificateId } = await params;
+  try {
+    const { certificateId } = await params;
 
-  const certificate = await prisma.certificate.findUnique({
-    where: {
-      certificateId,
-    },
-  });
+    const certificate = await prisma.certificate.findUnique({
+      where: {
+        certificateId,
+      },
+      select: {
+        certificateId: true,
+        recipient: true,
+        title: true,
+        issuer: true,
+        issuedAt: true,
+        status: true,
 
-  if (!certificate) {
+        organization: {
+          select: {
+            name: true,
+            website: true,
+            logo: true,
+            signature: true,
+            seal: true,
+          },
+        },
+      },
+    });
+
+    if (!certificate) {
+      return NextResponse.json(
+        {
+          error: "Certificate not found",
+        },
+        {
+          status: 404,
+        }
+      );
+    }
+
+    return NextResponse.json(certificate);
+  } catch (error) {
+    console.error(error);
+
     return NextResponse.json(
-      { error: "Certificate not found" },
-      { status: 404 }
+      {
+        error: "Failed to verify certificate.",
+      },
+      {
+        status: 500,
+      }
     );
   }
-
-  return NextResponse.json(certificate);
 }

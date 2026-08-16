@@ -1,18 +1,42 @@
 "use client";
 
 import Link from "next/link";
-import { ShieldCheck, Circle, Moon, Sun } from "lucide-react";
+import {
+  ShieldCheck,
+  Circle,
+  Moon,
+  Sun,
+  ExternalLink,
+} from "lucide-react";
 import { useEffect, useState } from "react";
-import { useTheme } from "next-themes";
 
 export default function Navbar() {
   const [mounted, setMounted] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
   const [now, setNow] = useState(new Date());
-
-  const { resolvedTheme, setTheme } = useTheme();
 
   useEffect(() => {
     setMounted(true);
+
+    const savedTheme = localStorage.getItem("sarlayash-theme");
+
+    if (savedTheme === "dark") {
+      setDarkMode(true);
+      document.documentElement.classList.add("dark");
+    } else if (savedTheme === "light") {
+      setDarkMode(false);
+      document.documentElement.classList.remove("dark");
+    } else {
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
+
+      setDarkMode(prefersDark);
+      document.documentElement.classList.toggle(
+        "dark",
+        prefersDark
+      );
+    }
 
     const timer = setInterval(() => {
       setNow(new Date());
@@ -21,37 +45,64 @@ export default function Navbar() {
     return () => clearInterval(timer);
   }, []);
 
-  const isDark = resolvedTheme === "dark";
+  function toggleTheme() {
+    const nextTheme = !darkMode;
+
+    setDarkMode(nextTheme);
+
+    document.documentElement.classList.toggle(
+      "dark",
+      nextTheme
+    );
+
+    localStorage.setItem(
+      "sarlayash-theme",
+      nextTheme ? "dark" : "light"
+    );
+  }
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur-xl dark:border-slate-700 dark:bg-slate-900/80">
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
+    <header className="sticky top-0 z-50 border-b border-[#c9a227]/20 bg-[#050505]/95 backdrop-blur-xl">
 
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-4">
-          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-600 text-white shadow-lg">
-            <ShieldCheck size={24} />
+      <div className="mx-auto flex min-h-[76px] max-w-7xl items-center justify-between gap-6 px-6">
+
+        {/* Brand */}
+        <Link
+          href="/"
+          className="group flex shrink-0 items-center gap-3"
+        >
+          <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-[#c9a227]/50 bg-[#0b0b0b] text-[#d4af37] shadow-[0_0_24px_rgba(201,162,39,0.12)] transition group-hover:border-[#d4af37]">
+            <ShieldCheck
+              size={23}
+              strokeWidth={1.8}
+            />
           </div>
 
           <div>
-            <h1 className="text-lg font-bold text-slate-900 dark:text-white">
+            <h1 className="text-[15px] font-semibold tracking-wide text-[#f7f4ec]">
               SarlaYash Digital Trust Platform
             </h1>
 
-            <p className="text-xs text-slate-500 dark:text-slate-400">
-              Legacy of Values • Future of Learning
+            <p className="mt-0.5 text-[10px] tracking-[0.16em] text-[#b7b1a3]">
+              LEGACY OF VALUES • FUTURE OF LEARNING
             </p>
           </div>
         </Link>
 
         {/* Public Navigation */}
-        <nav className="hidden items-center gap-8 text-sm font-medium text-slate-700 dark:text-slate-300 lg:flex">
+        <nav className="hidden items-center gap-7 text-[13px] font-medium lg:flex">
 
-          <Link href="/" className="hover:text-emerald-600">
+          <Link
+            href="/"
+            className="text-[#e7e2d7] transition hover:text-[#d4af37]"
+          >
             Home
           </Link>
 
-          <Link href="/verify" className="hover:text-emerald-600">
+          <Link
+            href="/verify"
+            className="text-[#e7e2d7] transition hover:text-[#d4af37]"
+          >
             Verify Certificate
           </Link>
 
@@ -59,25 +110,17 @@ export default function Navbar() {
             href="https://sarlayash.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-emerald-600"
+            className="flex items-center gap-1.5 text-[#e7e2d7] transition hover:text-[#d4af37]"
           >
             SarlaYash
-          </a>
-
-          <a
-            href="https://www.sarlayash.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-emerald-600"
-          >
-            SarlaYash Global
+            <ExternalLink size={11} />
           </a>
 
           <a
             href="https://hackathons.sarlayash.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-emerald-600"
+            className="text-[#e7e2d7] transition hover:text-[#d4af37]"
           >
             Hackathons
           </a>
@@ -86,7 +129,7 @@ export default function Navbar() {
             href="https://dawk.sarlayash.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-emerald-600"
+            className="text-[#e7e2d7] transition hover:text-[#d4af37]"
           >
             DAWK
           </a>
@@ -95,31 +138,33 @@ export default function Navbar() {
             href="https://syaaas.sarlayash.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-emerald-600"
+            className="text-[#e7e2d7] transition hover:text-[#d4af37]"
           >
             SYAAAS
           </a>
 
         </nav>
 
-        {/* Right Side */}
-        <div className="flex items-center gap-4">
+        {/* Right Controls */}
+        <div className="flex shrink-0 items-center gap-3">
 
-          {/* Live Clock */}
-          <div className="hidden rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-2 dark:border-emerald-900 dark:bg-emerald-950/30 lg:block">
+          {/* Live Status */}
+          <div className="hidden rounded-lg border border-[#c9a227]/25 bg-[#0b0b0b] px-3 py-2 xl:block">
 
             <div className="flex items-center gap-2">
+
               <Circle
-                size={10}
-                className="fill-emerald-500 text-emerald-500"
+                size={8}
+                className="fill-[#d4af37] text-[#d4af37]"
               />
 
-              <span className="text-xs font-bold text-emerald-700 dark:text-emerald-400">
+              <span className="text-[11px] font-semibold tracking-[0.12em] text-[#d4af37]">
                 LIVE
               </span>
+
             </div>
 
-            <p className="mt-1 text-xs text-slate-600 dark:text-slate-400">
+            <p className="mt-1 text-[10px] text-[#a8a294]">
               {now.toLocaleString("en-IN", {
                 dateStyle: "medium",
                 timeStyle: "medium",
@@ -132,27 +177,38 @@ export default function Navbar() {
           {/* Theme Toggle */}
           {mounted && (
             <button
-              onClick={() => setTheme(isDark ? "light" : "dark")}
-              className="rounded-lg border border-slate-300 p-2 transition hover:bg-slate-100 dark:border-slate-700 dark:hover:bg-slate-800"
-              aria-label="Toggle Theme"
-              title={isDark ? "Light Mode" : "Dark Mode"}
+              type="button"
+              onClick={toggleTheme}
+              className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#c9a227]/25 bg-[#0b0b0b] text-[#d4af37] transition hover:border-[#d4af37] hover:bg-[#171717]"
+              aria-label={
+                darkMode
+                  ? "Switch to light mode"
+                  : "Switch to dark mode"
+              }
+              title={
+                darkMode
+                  ? "Light Mode"
+                  : "Dark Mode"
+              }
             >
-              {isDark ? <Sun size={18} /> : <Moon size={18} />}
+              {darkMode ? (
+                <Sun
+                  size={17}
+                  strokeWidth={1.8}
+                />
+              ) : (
+                <Moon
+                  size={17}
+                  strokeWidth={1.8}
+                />
+              )}
             </button>
           )}
 
-          {/* Verify */}
-          <Link
-            href="/verify"
-            className="hidden rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium transition hover:border-emerald-500 hover:text-emerald-600 dark:border-slate-700 dark:text-slate-300 md:block"
-          >
-            Verify
-          </Link>
-
           {/* Staff Login */}
           <Link
-            href="/admin"
-            className="rounded-lg bg-emerald-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg transition hover:bg-emerald-700"
+            href="/admin/login"
+            className="rounded-lg border border-[#c9a227] bg-[#c9a227] px-4 py-2.5 text-[12px] font-semibold tracking-wide text-[#050505] transition hover:bg-[#d4af37]"
           >
             Staff Login
           </Link>

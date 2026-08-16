@@ -4,231 +4,265 @@ import {
   QrCode,
   Building2,
   BadgeCheck,
-  Sparkles,
   ArrowRight,
-  GraduationCap,
 } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-emerald-950 text-white">
+    <section className="relative overflow-hidden bg-[#050505] text-[#f7f4ec]">
 
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(16,185,129,.20),transparent_35%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(59,130,246,.18),transparent_40%)]" />
+      {/* Subtle gold atmosphere */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute right-[-120px] top-[-160px] h-[520px] w-[520px] rounded-full bg-[#c9a227]/10 blur-[140px]" />
+        <div className="absolute bottom-[-180px] left-[-120px] h-[420px] w-[420px] rounded-full bg-[#d4af37]/5 blur-[120px]" />
+      </div>
 
-      <div className="relative mx-auto grid max-w-7xl gap-16 px-6 py-24 lg:grid-cols-2">
+      <div className="relative mx-auto grid max-w-7xl gap-16 px-6 py-20 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:py-24">
 
-        {/* LEFT */}
+        {/* LEFT CONTENT */}
+        <div>
 
-        <div className="flex flex-col justify-center">
-
-          <div className="inline-flex w-fit items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 text-sm text-emerald-300">
-
-            <Sparkles size={16} />
-
+          <div className="inline-flex items-center gap-2 rounded-full border border-[#c9a227]/40 bg-[#c9a227]/5 px-4 py-2 text-[10px] font-semibold tracking-[0.18em] text-[#d4af37]">
+            <ShieldCheck size={15} strokeWidth={1.8} />
             SARLAYASH DIGITAL TRUST PLATFORM
-
           </div>
 
-          <h1 className="mt-8 text-5xl font-black leading-tight lg:text-7xl">
+          <h1 className="mt-8 max-w-3xl text-5xl font-semibold leading-[1.05] tracking-[-0.03em] text-[#f7f4ec] sm:text-6xl lg:text-[4.25rem]">
 
-            Secure
+            Digital Trust,
 
-            <span className="block text-emerald-400">
-
-              Digital Credentials
-
+            <span className="block text-[#d4af37]">
+              Built for the Future.
             </span>
 
           </h1>
 
-          <p className="mt-3 text-lg font-medium text-emerald-300">
-            Legacy of Values • Future of Learning
-          </p>
+          <div className="mt-6 h-px w-20 bg-[#c9a227]" />
 
-          <p className="mt-8 max-w-xl text-xl leading-9 text-slate-300">
-
+          <p className="mt-7 max-w-xl text-lg leading-8 text-[#b7b1a3]">
             Issue, verify and manage secure digital certificates,
             achievements, academic credentials and institutional
-            records through QR-powered verification trusted by
-            organizations.
-
+            records through QR-powered verification.
           </p>
 
-          <div className="mt-10 flex flex-wrap gap-4">
+          {/* ACTIONS */}
+          <div className="mt-9 flex flex-wrap gap-3">
 
             <Link
               href="/verify"
-              className="rounded-xl bg-emerald-600 px-7 py-4 font-semibold shadow-xl transition hover:bg-emerald-700"
+              className="flex items-center gap-2 rounded-lg bg-[#c9a227] px-6 py-3.5 text-sm font-semibold text-[#050505] transition hover:bg-[#d4af37]"
             >
               Verify Certificate
+              <ArrowRight size={17} />
             </Link>
 
             <Link
-              href="/admin"
-              className="flex items-center gap-2 rounded-xl border border-slate-700 px-7 py-4 font-semibold transition hover:border-emerald-500"
+              href="/admin/login"
+              className="flex items-center gap-2 rounded-lg border border-[#c9a227]/50 bg-[#0b0b0b] px-6 py-3.5 text-sm font-semibold text-[#f7f4ec] transition hover:border-[#d4af37] hover:text-[#d4af37]"
             >
-              Admin Portal
-
-              <ArrowRight size={18} />
-
+              Staff Login
             </Link>
 
           </div>
 
-          <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {/* TRUST PRINCIPLES */}
+          <div className="mt-12 grid max-w-xl gap-5 sm:grid-cols-3">
 
-            <div className="flex items-center gap-2 text-sm text-slate-300">
-
+            <div className="border-l border-[#c9a227]/40 pl-4">
               <ShieldCheck
-                className="text-emerald-400"
-                size={18}
+                size={19}
+                className="mb-2 text-[#d4af37]"
+                strokeWidth={1.7}
               />
 
-              Enterprise Security
+              <p className="text-sm font-semibold text-[#f7f4ec]">
+                Trusted
+              </p>
 
+              <p className="mt-1 text-xs leading-5 text-[#8f8a80]">
+                Verifiable digital credentials
+              </p>
             </div>
 
-            <div className="flex items-center gap-2 text-sm text-slate-300">
-
+            <div className="border-l border-[#c9a227]/40 pl-4">
               <QrCode
-                className="text-blue-400"
-                size={18}
+                size={19}
+                className="mb-2 text-[#d4af37]"
+                strokeWidth={1.7}
               />
 
-              QR Verification
+              <p className="text-sm font-semibold text-[#f7f4ec]">
+                QR Verified
+              </p>
 
+              <p className="mt-1 text-xs leading-5 text-[#8f8a80]">
+                Instant certificate verification
+              </p>
             </div>
 
-            <div className="flex items-center gap-2 text-sm text-slate-300">
-
+            <div className="border-l border-[#c9a227]/40 pl-4">
               <Building2
-                className="text-orange-400"
-                size={18}
+                size={19}
+                className="mb-2 text-[#d4af37]"
+                strokeWidth={1.7}
               />
 
-              Multi Organization
+              <p className="text-sm font-semibold text-[#f7f4ec]">
+                Institutional
+              </p>
 
-            </div>
-
-            <div className="flex items-center gap-2 text-sm text-slate-300">
-
-              <GraduationCap
-                className="text-pink-400"
-                size={18}
-              />
-
-              Academic Credentials
-
-            </div>
-
-            <div className="flex items-center gap-2 text-sm text-slate-300">
-
-              <BadgeCheck
-                className="text-yellow-400"
-                size={18}
-              />
-
-              Trusted Verification
-
+              <p className="mt-1 text-xs leading-5 text-[#8f8a80]">
+                Built for organizations
+              </p>
             </div>
 
           </div>
 
         </div>
 
-        {/* RIGHT */}
+        {/* CERTIFICATE PREVIEW */}
+        <div className="flex justify-center lg:justify-end">
 
-        <div className="flex items-center justify-center">
+          <div className="w-full max-w-[470px]">
 
-          <div className="w-full max-w-md rounded-3xl border border-slate-700 bg-white p-8 text-slate-900 shadow-[0_35px_90px_rgba(0,0,0,.45)]">
+            <div className="mb-3 flex items-center justify-between px-1">
 
-            <div className="flex items-center justify-between">
+              <span className="text-[10px] tracking-[0.28em] text-[#8f8a80]">
+                DIGITAL CREDENTIAL
+              </span>
 
-              <div>
-
-                <p className="text-xs uppercase tracking-[0.3em] text-emerald-600">
-
-                  SARLAYASH
-
-                </p>
-
-                <h3 className="mt-2 text-2xl font-bold">
-
-                  Verified Digital Certificate
-
-                </h3>
-
-              </div>
-
-              <div className="rounded-full bg-green-100 p-3">
-
-                <BadgeCheck className="text-green-600" />
-
-              </div>
+              <span className="flex items-center gap-1.5 text-[10px] font-semibold tracking-[0.14em] text-[#d4af37]">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#d4af37]" />
+                VERIFIED
+              </span>
 
             </div>
 
-            <div className="mt-8 space-y-5">
+            <div className="overflow-hidden rounded-2xl border border-[#c9a227]/30 bg-[#f7f4ec] text-[#111111] shadow-[0_30px_100px_rgba(0,0,0,0.5)]">
 
-              <div>
+              {/* CERTIFICATE HEADER */}
+              <div className="border-b border-[#c9a227]/30 bg-[#0b0b0b] px-7 py-6 text-[#f7f4ec]">
 
-                <p className="text-xs uppercase tracking-wider text-slate-500">
-                  Recipient
-                </p>
+                <div className="flex items-start justify-between">
 
-                <p className="font-semibold">
-                  Riya Sharma
-                </p>
+                  <div>
 
-              </div>
+                    <p className="text-[10px] tracking-[0.35em] text-[#d4af37]">
+                      SARLAYASH
+                    </p>
 
-              <div>
+                    <h2 className="mt-2 text-xl font-semibold">
+                      Verified Digital Certificate
+                    </h2>
 
-                <p className="text-xs uppercase tracking-wider text-slate-500">
-                  Certificate
-                </p>
+                  </div>
 
-                <p className="font-semibold">
-                  Artificial Intelligence Bootcamp
-                </p>
+                  <div className="flex h-11 w-11 items-center justify-center rounded-full border border-[#c9a227]/40 bg-[#c9a227]/10">
+                    <BadgeCheck
+                      size={23}
+                      className="text-[#d4af37]"
+                      strokeWidth={1.8}
+                    />
+                  </div>
 
-              </div>
-
-              <div>
-
-                <p className="text-xs uppercase tracking-wider text-slate-500">
-                  Certificate ID
-                </p>
-
-                <p className="font-mono">
-                  SY-DTP-2026-000001
-                </p>
+                </div>
 
               </div>
 
-            </div>
+              {/* CERTIFICATE BODY */}
+              <div className="p-7">
 
-            <div className="mt-10 rounded-2xl bg-slate-100 p-6">
+                <div className="grid gap-6 sm:grid-cols-2">
 
-              <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-[10px] tracking-[0.18em] text-[#777267]">
+                      RECIPIENT
+                    </p>
 
-                <span className="font-semibold">
-                  Verification Status
-                </span>
+                    <p className="mt-1 font-semibold">
+                      Riya Sharma
+                    </p>
+                  </div>
 
-                <span className="rounded-full bg-green-600 px-3 py-1 text-sm font-bold text-white">
-                  VERIFIED
-                </span>
+                  <div>
+                    <p className="text-[10px] tracking-[0.18em] text-[#777267]">
+                      CREDENTIAL
+                    </p>
 
-              </div>
+                    <p className="mt-1 font-semibold">
+                      Artificial Intelligence Bootcamp
+                    </p>
+                  </div>
 
-              <div className="mt-6 flex items-center justify-center rounded-xl border-2 border-dashed border-slate-300 p-8">
+                  <div>
+                    <p className="text-[10px] tracking-[0.18em] text-[#777267]">
+                      CERTIFICATE ID
+                    </p>
 
-                <QrCode
-                  size={80}
-                  className="text-slate-700"
-                />
+                    <p className="mt-1 font-mono text-sm">
+                      SY-DTP-2026-000001
+                    </p>
+                  </div>
+
+                  <div>
+                    <p className="text-[10px] tracking-[0.18em] text-[#777267]">
+                      STATUS
+                    </p>
+
+                    <p className="mt-1 font-semibold text-[#8a6d12]">
+                      Verified
+                    </p>
+                  </div>
+
+                </div>
+
+                {/* VERIFICATION */}
+                <div className="mt-7 rounded-xl border border-[#d8d1c0] bg-white p-5">
+
+                  <div className="flex items-center justify-between gap-4">
+
+                    <div>
+
+                      <p className="text-sm font-semibold">
+                        Verification Status
+                      </p>
+
+                      <p className="mt-1 text-xs text-[#777267]">
+                        Scan the QR code to verify this credential.
+                      </p>
+
+                    </div>
+
+                    <span className="shrink-0 rounded-full border border-[#c9a227]/40 bg-[#c9a227]/10 px-3 py-1 text-[10px] font-bold tracking-wider text-[#8a6d12]">
+                      VERIFIED
+                    </span>
+
+                  </div>
+
+                  <div className="mt-5 flex justify-center rounded-lg border border-dashed border-[#c9a227]/40 bg-[#faf8f2] p-7">
+
+                    <QrCode
+                      size={112}
+                      strokeWidth={1.4}
+                      className="text-[#171717]"
+                    />
+
+                  </div>
+
+                </div>
+
+                {/* CERTIFICATE FOOTER */}
+                <div className="mt-6 flex items-center justify-between border-t border-[#d8d1c0] pt-5">
+
+                  <span className="text-[9px] tracking-[0.22em] text-[#777267]">
+                    DIGITAL TRUST PLATFORM
+                  </span>
+
+                  <span className="text-[9px] font-semibold tracking-[0.16em] text-[#8a6d12]">
+                    SARLAYASH
+                  </span>
+
+                </div>
 
               </div>
 
@@ -239,7 +273,6 @@ export default function Hero() {
         </div>
 
       </div>
-
     </section>
   );
 }

@@ -1,36 +1,77 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { Moon, Sun } from "lucide-react";
-import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 export default function ThemeToggle() {
-  const { theme, setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
     setMounted(true);
+
+    const savedTheme = localStorage.getItem("sarlayash-theme");
+
+    if (savedTheme === "dark") {
+      setDarkMode(true);
+      document.documentElement.classList.add("dark");
+    } else if (savedTheme === "light") {
+      setDarkMode(false);
+      document.documentElement.classList.remove("dark");
+    } else {
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
+
+      setDarkMode(prefersDark);
+      document.documentElement.classList.toggle(
+        "dark",
+        prefersDark
+      );
+    }
   }, []);
 
-  if (!mounted) {
-    return (
-      <button
-        className="flex h-10 w-10 items-center justify-center rounded-lg border border-slate-300 dark:border-slate-700"
-        aria-label="Loading theme"
-      />
+  function toggleTheme() {
+    const nextTheme = !darkMode;
+
+    setDarkMode(nextTheme);
+
+    document.documentElement.classList.toggle(
+      "dark",
+      nextTheme
+    );
+
+    localStorage.setItem(
+      "sarlayash-theme",
+      nextTheme ? "dark" : "light"
     );
   }
 
-  const isDark = (theme === "system" ? resolvedTheme : theme) === "dark";
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <button
-      onClick={() => setTheme(isDark ? "light" : "dark")}
-      className="flex h-10 w-10 items-center justify-center rounded-lg border border-slate-300 bg-white text-slate-700 transition hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-900 dark:text-yellow-300 dark:hover:bg-slate-800"
-      aria-label="Toggle theme"
-      title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
+      type="button"
+      onClick={toggleTheme}
+      className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#c9a227]/25 bg-[#0b0b0b] text-[#d4af37] transition hover:border-[#d4af37] hover:bg-[#171717]"
+      aria-label={
+        darkMode
+          ? "Switch to light mode"
+          : "Switch to dark mode"
+      }
+      title={
+        darkMode
+          ? "Light Mode"
+          : "Dark Mode"
+      }
     >
-      {isDark ? <Sun size={18} /> : <Moon size={18} />}
+      {darkMode ? (
+        <Sun size={17} strokeWidth={1.8} />
+      ) : (
+        <Moon size={17} strokeWidth={1.8} />
+      )}
     </button>
   );
 }

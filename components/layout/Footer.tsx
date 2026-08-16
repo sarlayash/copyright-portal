@@ -1,143 +1,125 @@
 import Link from "next/link";
-import {
-  ShieldCheck,
-  Globe,
-  ExternalLink,
-} from "lucide-react";
+import { ExternalLink, ShieldCheck } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer
-      id="contact"
-      className="border-t border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-950"
-    >
+    <footer className="border-t border-[#c9a227]/20 bg-[#050505] text-[#f7f4ec]">
+
       <div className="mx-auto max-w-7xl px-6 py-14">
 
-        <div className="grid gap-12 md:grid-cols-3">
+        <div className="grid gap-10 md:grid-cols-3">
 
           {/* Brand */}
-
           <div>
-            <div className="mb-4 flex items-center gap-3">
+            <div className="flex items-center gap-3">
 
-              <div className="rounded-xl bg-blue-600 p-3 text-white">
-                <ShieldCheck size={22} />
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-[#c9a227]/40 bg-[#0b0b0b] text-[#d4af37]">
+                <ShieldCheck size={20} />
               </div>
 
               <div>
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white">
-                  SarlaYash
+                <h3 className="text-sm font-semibold">
+                  SarlaYash Digital Trust Platform
                 </h3>
 
-                <p className="text-sm text-slate-500 dark:text-slate-400">
-                  Digital Trust Platform
+                <p className="mt-1 text-[10px] tracking-[0.16em] text-[#8f8a80]">
+                  POWERED BY KAPIL
                 </p>
               </div>
 
             </div>
 
-            <p className="leading-7 text-slate-600 dark:text-slate-400">
-              Secure issuance, verification and lifecycle management of
-              digital certificates, credentials and copyright acknowledgements
-              with QR-based authentication.
+            <p className="mt-5 max-w-sm text-sm leading-6 text-[#8f8a80]">
+              A digital platform for issuing, managing and verifying
+              trusted credentials and certificates.
             </p>
           </div>
 
           {/* Platform */}
-
           <div>
-            <h4 className="mb-5 font-semibold text-slate-900 dark:text-white">
-              Platform
+            <h4 className="text-xs font-semibold tracking-[0.18em] text-[#d4af37]">
+              PLATFORM
             </h4>
 
-            <div className="space-y-3">
+            <div className="mt-5 space-y-3 text-sm">
 
               <Link
                 href="/"
-                className="block text-slate-600 transition hover:text-blue-600 dark:text-slate-400"
+                className="block text-[#b7b1a3] transition hover:text-[#d4af37]"
               >
                 Home
               </Link>
 
               <Link
                 href="/verify"
-                className="block text-slate-600 transition hover:text-blue-600 dark:text-slate-400"
+                className="block text-[#b7b1a3] transition hover:text-[#d4af37]"
               >
                 Verify Certificate
               </Link>
 
               <Link
-                href="/admin"
-                className="block text-slate-600 transition hover:text-blue-600 dark:text-slate-400"
+                href="/admin/login"
+                className="block text-[#b7b1a3] transition hover:text-[#d4af37]"
               >
-                Admin Dashboard
+                Staff Login
               </Link>
 
             </div>
           </div>
 
-          {/* SarlaYash Ecosystem */}
-
+          {/* SarlaYash */}
           <div>
-            <h4 className="mb-5 font-semibold text-slate-900 dark:text-white">
-              SarlaYash Ecosystem
+            <h4 className="text-xs font-semibold tracking-[0.18em] text-[#d4af37]">
+              SARLAYASH
             </h4>
 
-            <div className="space-y-3">
-
-              <a
-                href="https://www.sarlayash.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-slate-600 transition hover:text-blue-600 dark:text-slate-400"
-              >
-                <Globe size={16} />
-                www.sarlayash.com
-                <ExternalLink size={14} />
-              </a>
+            <div className="mt-5 space-y-3 text-sm">
 
               <a
                 href="https://sarlayash.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-slate-600 transition hover:text-blue-600 dark:text-slate-400"
+                className="flex items-center gap-2 text-[#b7b1a3] transition hover:text-[#d4af37]"
               >
-                <Globe size={16} />
                 sarlayash.com
-                <ExternalLink size={14} />
+                <ExternalLink size={12} />
+              </a>
+
+              <a
+                href="https://www.sarlayash.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-[#b7b1a3] transition hover:text-[#d4af37]"
+              >
+                www.sarlayash.com
+                <ExternalLink size={12} />
               </a>
 
               <a
                 href="https://hackathons.sarlayash.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-slate-600 transition hover:text-blue-600 dark:text-slate-400"
+                className="text-[#b7b1a3] transition hover:text-[#d4af37]"
               >
-                <Globe size={16} />
-                hackathons.sarlayash.com
-                <ExternalLink size={14} />
+                Hackathons
               </a>
 
               <a
                 href="https://dawk.sarlayash.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-slate-600 transition hover:text-blue-600 dark:text-slate-400"
+                className="text-[#b7b1a3] transition hover:text-[#d4af37]"
               >
-                <Globe size={16} />
-                dawk.sarlayash.com
-                <ExternalLink size={14} />
+                DAWK
               </a>
 
               <a
                 href="https://syaaas.sarlayash.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-slate-600 transition hover:text-blue-600 dark:text-slate-400"
+                className="text-[#b7b1a3] transition hover:text-[#d4af37]"
               >
-                <Globe size={16} />
-                syaaas.sarlayash.com
-                <ExternalLink size={14} />
+                SYAAAS
               </a>
 
             </div>
@@ -145,14 +127,14 @@ export default function Footer() {
 
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-slate-200 pt-8 text-sm text-slate-500 dark:border-slate-800 dark:text-slate-400 md:flex-row">
+        <div className="mt-12 flex flex-col gap-3 border-t border-[#c9a227]/15 pt-6 text-xs text-[#777267] md:flex-row md:items-center md:justify-between">
 
           <p>
-            © {new Date().getFullYear()} SarlaYash Technologies. All Rights Reserved.
+            © 2026 SarlaYash Mission • Powered By Kapil
           </p>
 
           <p>
-            Built with ❤️ in India • Digital Trust Platform
+            Digital Trust Platform
           </p>
 
         </div>

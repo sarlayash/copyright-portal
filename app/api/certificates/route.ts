@@ -1,9 +1,12 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import QRCode from "qrcode";
+import { requireAdmin } from "@/lib/auth";
 
 export async function GET() {
   try {
+    await requireAdmin();
+
     const certificates = await prisma.certificate.findMany({
       orderBy: {
         issuedAt: "desc",
@@ -12,6 +15,16 @@ export async function GET() {
 
     return NextResponse.json(certificates);
   } catch (error) {
+    if (
+      error instanceof Error &&
+      error.message === "UNAUTHORIZED"
+    ) {
+      return NextResponse.json(
+        { error: "Unauthorized" },
+        { status: 401 }
+      );
+    }
+
     console.error(error);
 
     return NextResponse.json(
@@ -23,6 +36,8 @@ export async function GET() {
 
 export async function POST(request: Request) {
   try {
+    await requireAdmin();
+
     const body = await request.json();
 
     const certificateId = `DTP-${Date.now()}`;
@@ -47,6 +62,16 @@ export async function POST(request: Request) {
 
     return NextResponse.json(certificate);
   } catch (error) {
+    if (
+      error instanceof Error &&
+      error.message === "UNAUTHORIZED"
+    ) {
+      return NextResponse.json(
+        { error: "Unauthorized" },
+        { status: 401 }
+      );
+    }
+
     console.error(error);
 
     return NextResponse.json(
